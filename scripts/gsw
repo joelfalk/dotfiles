@@ -1,0 +1,6 @@
+#!/bin/bash
+    if [[ ! -z $@ ]]; then
+        git switch $@
+    else
+        git switch $(git branch -a | grep -E "HEAD|^\*" -v | sed "s/remotes\/origin\///" | sort | uniq | fzf)
+    fi
